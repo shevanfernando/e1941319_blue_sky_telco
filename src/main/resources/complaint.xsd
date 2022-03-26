@@ -1,0 +1,78 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://blueskytelco.com/customerservice/complaint"
+           targetNamespace="http://blueskytelco.com/customerservice/complaint"
+           elementFormDefault="qualified">
+
+    <!--Create New Complaint-->
+    <xs:element name="NewComplaintRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="complaint" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="NewComplaintResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Get complain by Id-->
+    <xs:element name="GetComplainByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="referenceNumber" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetComplainByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="complaint" type="tns:Complaint"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Get status-->
+    <xs:element name="GetStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="referenceNumber" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Update status-->
+    <xs:element name="UpdateStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="referenceNumber" type="xs:int"/>
+                <xs:element name="status" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UpdateStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Complaint">
+        <xs:sequence>
+            <xs:element name="reference_number" type="xs:int"/>
+            <xs:element name="complaint" type="xs:string"/>
+            <xs:element name="status" type="xs:boolean" default="false"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
